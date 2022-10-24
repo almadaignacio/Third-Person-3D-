@@ -72,7 +72,10 @@ public class PlayerMovement : MonoBehaviour
         //Nos movemos solo si hay una dirección diferente que vector zero.
         if (playerDirection != Vector3.zero) MovePlayer(playerDirection);
 
-        if(puntuacion == 3)
+          int ValourBullet = GetComponent<Shooting>().KillCount;
+
+
+        if (puntuacion == 3 && ValourBullet == 4)
         {
             SceneManager.LoadScene(Level);
         }
@@ -103,6 +106,11 @@ public class PlayerMovement : MonoBehaviour
         if (other.gameObject.CompareTag("Wall"))
         {
             SceneManager.LoadScene(3);
+        }
+
+        if (other.gameObject.CompareTag("Enemy"))
+        {
+            SceneManager.LoadScene("GameOver");
         }
     }
 }
